@@ -3,7 +3,7 @@ import Asana from './Asana';
 
 const AsanaList = () => {
     return (
-        <ul class="collection">
+        <ul className="collection">
             <Asana />
             <Asana />
             <Asana />

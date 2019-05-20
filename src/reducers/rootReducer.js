@@ -5,8 +5,8 @@ import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    routine: routineReducer,
-    asana: asanaReducer
+    routines: routineReducer,
+    asanas: asanaReducer
 });
 
 export default rootReducer;

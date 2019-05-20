@@ -1,13 +1,16 @@
 import React from 'react';
 import RoutineSummary from './RoutineSummary';
 
-const RoutineList = () => {
+const RoutineList = ({routines}) => {
     return (
         <div className='routine-list section'>
-            <RoutineSummary />
-            <RoutineSummary />
-            <RoutineSummary />
-            <RoutineSummary />
+            {
+                routines && routines.map( item => {
+                    return (
+                        <RoutineSummary key={item.id} routine={item}/>
+                    )
+                })
+            }
         </div>
     )
 }
