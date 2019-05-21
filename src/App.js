@@ -7,6 +7,8 @@ import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreateRoutinePage from './components/CreateRoutinePage';
 
+import styles from './front.scss';
+
 class App extends Component {
   render() {
     return (

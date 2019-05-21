@@ -1,13 +1,16 @@
 import React from 'react';
 import Asana from './Asana';
 
-const AsanaList = () => {
+const AsanaList = ({asanas}) => {
     return (
         <ul className="collection">
-            <Asana />
-            <Asana />
-            <Asana />
-            <Asana />
+        {
+            asanas && asanas.map(asana => {
+                return (
+                    <Asana key={asana.id} asana={asana}/>
+                )
+            })
+        }
         </ul>
     )
 }

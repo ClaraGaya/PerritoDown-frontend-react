@@ -8,13 +8,11 @@ import { connect } from 'react-redux';
 class HomePage extends Component {
     
     render(){
-        const {routines}  = this.props;
-        console.log(this.props)
         return (
             <div className="dashboard container">
                 <div className="row">
                     <div className="col s12 m6">
-                        <RoutineList routines={routines}/>
+                        <RoutineList />
                     </div>
                     <div className="col s12 m5 offset-m1">
                         <Notifications />
@@ -30,4 +28,4 @@ const mapStateToProps = (state) => {
         routines: state.routines.routines,
     }
 }
-export default connect(mapStateToProps)(HomePage);
+export default connect(null, mapStateToProps)(HomePage);

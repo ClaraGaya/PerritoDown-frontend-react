@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import AsanaList from './AsanaList';
+import { connect } from 'react-redux';
+import { addRoutine } from '../actions/actions.routines';
+import { getAsanas } from '../actions/actions.asanas';
 
 
 export class CreateRoutinePage extends Component {
+    componentDidMount () {
+        this.props.getAsanas();
+    }
     state = {
         title: '',
         description: '',
-        asanas: []
+        routineAsanas: [1,2,3],
     }
     handleChange = (e) => {
         this.setState({
@@ -15,7 +21,7 @@ export class CreateRoutinePage extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state)
+        this.props.addRoutine(this.state.title,this.state.description,this.state.routineAsanas);
     }
     render() {
         return (
@@ -41,8 +47,8 @@ export class CreateRoutinePage extends Component {
                     </div>
                 </form>
                     </div>
-                    <div className="col s12 m3 offset-m1">
-                        <AsanaList />
+                    <div className="col s12 m4 asana-list">
+                        <AsanaList asanas={this.props.asanas}/>
                     </div>
                 </div>
 
@@ -52,5 +58,20 @@ export class CreateRoutinePage extends Component {
     }
 }
 
-export default CreateRoutinePage;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addRoutine: (name,description,asanasArr) => dispatch(addRoutine(name,description,asanasArr)),
+        getAsanas: () => dispatch(getAsanas())
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        asanas: state.asanas.data,
+        loading: state.asanas.loading,
+        error: state.asanas.error
+    }
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(CreateRoutinePage);
 
