@@ -30,7 +30,7 @@ export const getRoutinesError = (err) => ({
 
 // Thunk Action creator 
 export const addRoutine = (name, description,asanasArr) => {
-    return (dispatch) => {
+    return (dispatch, getState, {getFirebase, getFireStore }) => {
         dispatch(addRoutineRequest());
         axios.post(`${ROOT}/routine`,{
             name: name,
