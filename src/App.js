@@ -6,7 +6,7 @@ import RoutinePage from './components/RoutinePage';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreateRoutinePage from './components/CreateRoutinePage';
-
+// eslint-disable-next-line
 import styles from './front.scss';
 
 class App extends Component {
@@ -17,7 +17,7 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route path='/routine/:id' component={RoutinePage} />
+          <Route path='/routines/:id' component={RoutinePage} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
           <Route path='/createroutine' component={CreateRoutinePage} />

@@ -1,5 +1,8 @@
 import React from 'react';
 import RoutineSummary from './RoutineSummary';
+import { Link } from 'react-router-dom'; 
+
+
 
 const RoutineList = ({routines}) => {
     return (
@@ -7,7 +10,7 @@ const RoutineList = ({routines}) => {
             {
                 routines && routines.map( item => {
                     return (
-                        <RoutineSummary key={item.id} routine={item}/>
+                        <Link to={'/routines/'+item.id}><RoutineSummary key={item.id} routine={item}/></Link>
                     )
                 })
             }
@@ -15,4 +18,6 @@ const RoutineList = ({routines}) => {
     )
 }
 
+
 export default RoutineList;
+

@@ -5,9 +5,9 @@ const AsanaList = ({asanas}) => {
     return (
         <ul className="collection">
         {
-            asanas && asanas.map(asana => {
+            asanas && asanas.map( item => {
                 return (
-                    <Asana key={asana.id} asana={asana}/>
+                    <Asana key={item.id} asana={item}/>
                 )
             })
         }

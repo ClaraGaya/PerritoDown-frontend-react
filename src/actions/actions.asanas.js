@@ -1,14 +1,18 @@
 import * as types from './types';
-import axios from 'axios';
 
-import {ROOT} from '../config';
 
 // Thunk Action creator 
 export const getAsanas = () => {
-    return (dispatch) => {
+    return (dispatch, getState, { getFirestore }) => {
         dispatch(getAsanasRequest());
-        axios.get(`${ROOT}/asanas`)
-        .then((res) => {  dispatch(getAsanasSuccess(res.data.asanas)); })
+        const firestore = getFirestore();
+        firestore.collection('asanas').get()
+        .then(snapshot => {
+            snapshot.forEach(doc => {
+              console.log(doc.id, '=>', doc.data());
+            });
+        })
+        // .then((doc) => {  console.log(doc); dispatch(getAsanasSuccess(doc.data)); })
         .catch((err) => { dispatch(getAsanasError(err)); });
     }
 }
