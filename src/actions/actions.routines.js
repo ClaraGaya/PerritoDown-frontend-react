@@ -14,7 +14,7 @@ export const addRoutine = (routine) => {
             createdAt: new Date()
 
         })
-        .then( (res) => { console.log(res); dispatch(addRoutineSuccess(res.data)); })
+        .then( (res) => {  dispatch(addRoutineSuccess(res.data)); })
         .catch((err) => { dispatch(addRoutineError(err)); });
     }
 }

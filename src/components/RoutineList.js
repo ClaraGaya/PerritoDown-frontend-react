@@ -10,7 +10,9 @@ const RoutineList = ({routines}) => {
             {
                 routines && routines.map( item => {
                     return (
-                        <Link to={'/routines/'+item.id}><RoutineSummary key={item.id} routine={item}/></Link>
+                        <Link to={'/routines/'+item.id} key={item.id}>
+                            <RoutineSummary routine={item}/>
+                        </Link>
                     )
                 })
             }

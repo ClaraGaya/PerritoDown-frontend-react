@@ -27,7 +27,6 @@ class HomePage extends Component {
 }
 // connect to a certain collection in our firestore db
 const mapStateToProps = (state) => {
-    console.log('state',state)
     return {
         routines:state.firestore.ordered.routines,
     }

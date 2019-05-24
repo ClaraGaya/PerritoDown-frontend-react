@@ -23,7 +23,6 @@ export class CreateRoutinePage extends Component {
     }
     render() {
         const { asanas } = this.props;
-        console.log('asanas', asanas)
         return (
             <div className='container'>
                 <div className="row">
@@ -65,7 +64,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 // connect to a certain collection in our firestore db
 const mapStateToProps = (state) => {
-    console.log('state',state)
     return {
         asanas:state.firestore.ordered.asanas,
     }
