@@ -5,6 +5,7 @@ import { addRoutine } from '../actions/actions.routines';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase'; 
 import { compose } from 'redux';
+import { Redirect } from 'react-router-dom';
 
 export class CreateRoutinePage extends Component {
     state = {
@@ -22,7 +23,8 @@ export class CreateRoutinePage extends Component {
         this.props.addRoutine(this.state);
     }
     render() {
-        const { asanas } = this.props;
+        const { asanas, auth } = this.props;
+        if( !auth.uid ) return <Redirect to='/signin' />
         return (
             <div className='container'>
                 <div className="row">
@@ -66,6 +68,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         asanas:state.firestore.ordered.asanas,
+        auth: state.firebase.auth
     }
 }
 

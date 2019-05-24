@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 // firestoreConnect is a higher oreder component to connect the HomePage component with a firestore collection
 import { firestoreConnect } from 'react-redux-firebase'; 
 import { compose } from 'redux';
+import { Redirect } from 'react-router-dom';
+
 
 const RoutinePage = (props) => {
-    const {routine} = props;
+    const {routine, auth} = props;
+    if( !auth.uid ) return <Redirect to='/signin' />
     if(routine) {
         return (
             <div className='container section routine-page'>
@@ -40,6 +43,7 @@ const mapStateToProps = (state, thisProps) => {
     const routine = routines ? routines[id]: null;
     return {
         routine:routine,
+        auth: state.firebase.auth
     }
 }
 
