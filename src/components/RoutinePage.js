@@ -8,7 +8,8 @@ import { Redirect } from 'react-router-dom';
 
 
 const RoutinePage = (props) => {
-    const {routine, auth} = props;
+    const { routine, auth } = props;
+    var createdAt = routine.timestamp.toDate();
     if( !auth.uid ) return <Redirect to='/signin' />
     if(routine) {
         return (
@@ -19,8 +20,7 @@ const RoutinePage = (props) => {
                         <p>{routine.description}</p>
                     </div>
                     <div className='card-action grey lighten-4 grey-text'>
-                        <p>{routine.author}</p>
-                        <p>{routine.createdAt}</p>
+                        <p>Created by {routine.authorFirstName} {routine.authorLastName} - {createdAt.toString()}</p>
                     </div>
                 </div>
             </div>

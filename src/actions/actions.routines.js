@@ -6,12 +6,15 @@ import * as types from './types';
 export const addRoutine = (routine) => {
     return (dispatch, getState, { getFirestore }) => {
         const firestore = getFirestore();
+        const profile = getState().firebase.profile;
+        const uid = getState().firebase.auth.uid;
         dispatch(addRoutineRequest());
         firestore.collection('routines').add({
             ...routine,
-            author: 'Clara',
-            authorId: 1234,
-            createdAt: new Date()
+            authorFirstName: profile.firstName,
+            authorLastName: profile.lastName,
+            authorId: uid,
+            timestamp: new Date()
 
         })
         .then( (res) => {  dispatch(addRoutineSuccess(res.data)); })

@@ -21,6 +21,7 @@ export class CreateRoutinePage extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.addRoutine(this.state);
+        this.props.history.push("/");
     }
     render() {
         const { asanas, auth } = this.props;
