@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase'; 
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
+import format from '../format';
 
 
 const RoutinePage = (props) => {
     const { routine, auth } = props;
-    var createdAt = routine.timestamp.toDate();
     if( !auth.uid ) return <Redirect to='/signin' />
     if(routine) {
         return (
@@ -20,7 +20,7 @@ const RoutinePage = (props) => {
                         <p>{routine.description}</p>
                     </div>
                     <div className='card-action grey lighten-4 grey-text'>
-                        <p>Created by {routine.authorFirstName} {routine.authorLastName} - {createdAt.toString()}</p>
+                        <p>Created by {routine.authorFirstName} {routine.authorLastName} - {format.dateTimeCal(routine.timestamp)}</p>
                     </div>
                 </div>
             </div>

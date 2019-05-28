@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import AsanaList from './AsanaList';
 import { addRoutine } from '../actions/actions.routines';
+
 // Connect to our store
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase'; 
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
 
-export class CreateRoutinePage extends Component {
+export class CreateRoutinePage extends Component {  
     state = {
         title: '',
         description: '',
@@ -23,7 +24,7 @@ export class CreateRoutinePage extends Component {
         this.props.addRoutine(this.state);
         this.props.history.push("/");
     }
-    render() {
+    render() {  
         const { asanas, auth } = this.props;
         if( !auth.uid ) return <Redirect to='/signin' />
         return (
