@@ -11,7 +11,9 @@ import { Redirect } from 'react-router-dom';
 
 class HomePage extends Component {
     render(){
-        const { routines, auth } = this.props;
+        const { routines, auth, notifications } = this.props;
+        console.log(notifications)
+
         if( !auth.uid ) return <Redirect to='/signin' />
         return (
             <div className="dashboard container">
@@ -20,7 +22,7 @@ class HomePage extends Component {
                         <RoutineList routines={routines}/>
                     </div>
                     <div className="col s12 m5 offset-m1">
-                        <Notifications />
+                        <Notifications notifications={notifications}/>
                     </div>
                 </div>
             </div>
@@ -31,6 +33,7 @@ class HomePage extends Component {
 const mapStateToProps = (state) => {
     return {
         routines:state.firestore.ordered.routines,
+        notifications:state.firestore.ordered.notifications,
         auth: state.firebase.auth
     }
 }
@@ -39,6 +42,7 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'routines' }
+        { collection: 'routines' },
+        { collection: 'notifications', limit: 3}
     ])
 )(HomePage);
